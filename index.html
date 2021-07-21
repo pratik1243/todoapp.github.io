@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo-app</title>
+
+
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+
+
+
+        #container {
+            width: max-content;
+            padding: 1rem;
+            margin: auto;
+            margin-top: 8%;
+            position: relative;
+            box-shadow: 0 0 10px rgb(160, 158, 158);
+            border-radius: .2rem;
+        }
+
+
+
+        #search {
+            width: 26rem;
+            padding: .8rem;
+            outline: none;
+            border-width: 0px;
+            border: 1px solid grey;
+            border-radius: .2rem;
+        }
+
+
+
+        #bar {
+            padding: 1rem;
+            margin: .8rem;
+            position: relative;
+            box-shadow: 0 0 10px rgb(160, 158, 158);
+            
+        }
+
+
+        #btn1 {
+            padding: .7rem;
+            margin: .7rem;
+            font-weight: bolder;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: rgb(49, 238, 49);
+            outline: none;
+            border-width: 0px;
+            color: white;
+            border-radius: .2rem;
+            margin-top: 1%;
+        }
+
+
+        #btn1:active {
+            background-color: rgb(5, 196, 5);
+        }
+
+
+
+        #btn3 {
+            padding: .7rem;
+            position: absolute;
+            right: 1.6%;
+            font-weight: bold;
+            font-size: 1.1rem;
+            background-color: rgb(25, 180, 241);
+            color: white;
+            outline: none;
+            border-width: 0px;
+            cursor: pointer;
+            border-radius: .2rem;
+        }
+
+
+        #btn3:active {
+            background-color: rgb(10, 125, 233);
+        }
+
+
+        h4 {
+            text-align: center;
+            font-size: 1.3rem;
+        }
+
+
+        
+
+        #error {
+            text-align: center;
+            margin-left: 20%;
+        }
+
+
+
+        #deleted {
+            margin-top: 2%;
+            transform: scale(1.7);
+            color: white;
+        }
+
+
+        #flex2 {
+            margin-top: 2.6%;
+            display: flex;
+            position: relative;
+        }
+
+
+        #flex2 #lists {
+
+            position: absolute;
+            bottom: 3.6%;
+            font-size: 1.2rem;
+            text-transform: capitalize;
+            left: 1%;
+
+        }
+
+
+
+    </style>
+
+</head>
+
+<body>
+
+    <div id="container">
+
+        <h4>TO-DO LIST</h4>
+
+        <div class="flex">
+
+
+            <input type="text" id="search" autocomplete="off" placeholder="Enter items name here..."> <button id="btn1"
+                onclick="bookmark()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-plus-lg" viewBox="0 0 16 16">
+                    <path
+                        d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
+                </svg></button> <br>
+
+        </div>
+
+        <span id="error"></span><br><br>
+
+        <div id="box"></div><br><br>
+
+
+
+        <div id="flex2">
+
+            <span id="lists">you have <span id="count">0</span> pending tasks</span><button id="btn3"
+                onclick="info()">clear all</button><br><br>
+
+        </div>
+
+    </div><br>
+
+
+    <span id="deleted"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-trash" viewBox="0 0 16 16">
+            <path
+                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+            <path fill-rule="evenodd"
+                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+        </svg></span>
+
+
+
+    <script type="text/javascript">
+
+
+        function bookmark() {
+            let input = document.getElementById("search").value;
+            let text = document.createTextNode(input);
+            let div = document.getElementById("box");
+            let list = document.getElementById("list");
+            let count = document.getElementById("count");
+            let btn2 = document.createElement("button");
+            let deleted = document.getElementById("deleted");
+            let clone = deleted.cloneNode(true);
+            btn2.innerHTML;
+            btn2.style.paddingTop = ".4rem";
+            btn2.style.position = "absolute";
+            btn2.style.right = "3%";
+            btn2.style.top = "20%";
+            btn2.style.backgroundColor = " rgb(241, 75, 24)";
+            btn2.style.color = "white";
+            btn2.style.borderWidth = "0px";
+            btn2.style.outline = "none";
+            btn2.style.cursor = "pointer";
+            btn2.style.borderRadius = ".2rem";
+            btn2.style.fontSize = "1rem";
+            btn2.addEventListener("click", function () {
+                div.removeChild(a);
+                let child = div.childNodes;
+                let len = child.length;
+                count.innerHTML = len;
+            })
+            let a = document.createElement("div");
+            a.id = "bar";
+            a.style.borderRadius = ".2rem";
+            a.appendChild(text);
+            div.appendChild(a);
+            a.appendChild(btn2);
+            btn2.appendChild(clone);
+            let child = div.childNodes;
+            let len = child.length[0];
+            count.innerHTML = len;
+            document.getElementById("search").value = "";
+            let span = document.getElementById("error");
+            if (input == "") {
+                span.innerHTML = "**please add some items in field**";
+                span.style.fontFamily = "sans-serif"
+                span.style.color = "red";
+                document.getElementById("search").style.border = " 1px solid red";
+                a.remove();
+                count.innerHTML = len;
+            }
+            else {
+                span.innerHTML = "";
+                document.getElementById("search").style.border = " 1px solid grey";
+                let child = div.childNodes;
+                let len = child.length;
+                count.innerHTML = len;
+            }
+
+        }
+
+
+        function info() {
+            let div = document.getElementById("box").innerHTML = "";
+            let count = document.getElementById("count").innerHTML = "0";
+        }
+
+
+    </script>
+
+</body>
+
+</html>
